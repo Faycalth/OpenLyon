@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<section id="main">
+<h1 style="text-align:center">Liste des Joueurs</h1>
+
+{% for joueur in joueurs %}
+
+<div style="display:inline-block;width:25%;margin:4%">
+  <h4 class="card-header"><a href="{{ path('details_joueur', {'id': joueur.id}) }}">{{ joueur.nom }} {{ joueur.prenom }}</a></h4>
+  <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
+  <div class="card-body">
+    <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
+  </div>
+</div>
+
+{% endfor %}
+
+</section>
+{% endblock %}
