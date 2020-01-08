@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -28,14 +29,9 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min="8", minMessage="Le mot de passe contient moins de 8 caractères")
-     * @Assert\EqualTo(propertyPath="confirm_password", message="Les mots de passe ne sont pas identiques")
      */
     private $password;
-
-    /**
-     * @Assert\EqualTo(propertyPath="password", message="Les mots de passe ne sont pas identiques")
-     */
+    
     public $confirm_password;
 
     public function getId(): ?int
@@ -77,5 +73,13 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function eraseCredentials(){}
+
+    public function getSalt(){}
+
+    public function getRoles(){
+        return ['ROLE_USER'];
     }
 }

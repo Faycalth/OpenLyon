@@ -2,16 +2,31 @@
 
 
 {% block body %}
-<section id="main">
-<h1 style="text-align:center">{{ joueur.nom }} {{ joueur.prenom }}</h1>
+{% if not app.user %}
+  <h1 style="text-align:center">{{ joueur.nom }} {{ joueur.prenom }}</h1>
 
-<div class="card mb-3" style="width:20%; dislay:inline-block; text-align:center">
-  <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
-  <div class="card-body">
-    <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
+  <div class="card mb-3" style="width:20%; dislay:inline-block; text-align:center">
+    <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
+    <div class="card-body">
+      <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
+    </div>
   </div>
-</div>
+{% else %}
+  <h1 style="text-align:center">{{ joueur.nom }} {{ joueur.prenom }}</h1>
+
+  <div class="card mb-3" style="width:20%; dislay:inline-block; text-align:center">
+    <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
+    <div class="card-body">
+      <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
+    </div>
+  </div>
+
+  <ul>
+    <li>Modifier les informations du joueur</li>
+    <li>Enregistrer un echange</li>
+    <li></li>
+  </ul>
 
 
-</section>
+{% endif %}
 {% endblock %}
