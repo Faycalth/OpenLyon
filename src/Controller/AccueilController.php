@@ -14,4 +14,12 @@ class AccueilController extends AbstractController
     {
         return $this->render('accueil/index.html.twig');
     }
+
+    /**
+     * @Route("/apropos", name="apropos")
+     */
+    public function apropos()
+    {
+        return $this->render('accueil/apropos.html.twig');
+    }
 }

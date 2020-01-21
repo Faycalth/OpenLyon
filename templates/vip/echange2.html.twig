@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Echange</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.titre, {'label': 'Titre', 'attr' : {'placeholder' : 'Donnez un titre à l\'échange'}  }) }}
+    {{ form_row(form.contenu, {'label': 'Contenu', 'attr' : {'placeholder' : 'Donnez le contenu de l\'échange'}  } )}}
+    {{ form_row(form.afaire, {'label': 'À faire (facultatif)', 'attr' : {'placeholder' : 'Entrez les actions à réaliser (facultatif)'}  }) }}
+    <button type="submit" class="btn btn-success" style="float:right">Enregistrer l'échange</button>
+    {{ form_end(form) }}
+
+{% endblock %}

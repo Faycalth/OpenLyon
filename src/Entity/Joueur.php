@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -55,6 +57,16 @@ class Joueur
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Echange", mappedBy="joueur")
+     */
+    private $echanges;
+
+    public function __construct()
+    {
+        $this->echanges = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -162,5 +174,38 @@ class Joueur
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Echange[]
+     */
+    public function getEchanges(): Collection
+    {
+        return $this->echanges;
+    }
+
+    public function addEchange(Echange $echange): self
+    {
+        if (!$this->echanges->contains($echange)) {
+            $this->echanges[] = $echange;
+            $echange->addJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEchange(Echange $echange): self
+    {
+        if ($this->echanges->contains($echange)) {
+            $this->echanges->removeElement($echange);
+            $echange->removeJoueur($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString() 
+    {
+        return (string) $this->nom; 
     }
 }

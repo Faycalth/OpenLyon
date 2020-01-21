@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Echanges : </th>
+      <th scope="col"><a href="{{ path('ajout_echange')}}"><button type="submit" class="btn" style="float:right">Ajouter un échange</button></a></th>
+    </tr>
+  </thead>
+   <tbody>
+   {% for echange in echanges %}
+  <tr>
+      <td>{{ echange.id }}</td>
+      <td>{{ echange.titre }}</td>
+      <td>{{ echange.contenu }}</td>
+      <td>{{ echange.afaire }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}

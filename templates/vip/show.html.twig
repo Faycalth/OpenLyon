@@ -2,24 +2,51 @@
 
 
 {% block body %}
-{% if not app.user %}
-  <h1 style="text-align:center">{{ joueur.nom }} {{ joueur.prenom }}</h1>
-
-  <div class="card mb-3" style="width:20%; dislay:inline-block; text-align:center">
-    <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
-    <div class="card-body">
-      <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
+  <div class="card mb-4" style="max-width: 70%;margin-left:15%;margin-top:5%;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{joueur.image}}" class="card-img" alt="Photo joueur">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{joueur.nom}} {{joueur.prenom}}</h5>
+        <p class="card-text">{{joueur.classementatp}}</p>
+        <p class="card-text"><small class="text-muted">Pays : {{joueur.nationalite}}</small></p>
+        <p class="card-text"><small class="text-muted">{{joueur.poids}} kg</small></p>
+        <p class="card-text"><small class="text-muted">{{joueur.taille}} cm</small></p>
+      </div>
     </div>
   </div>
-{% else %}
-  <h1 style="text-align:center">{{ joueur.nom }} {{ joueur.prenom }}</h1>
+{% if app.user %}
+  <button type="submit" class="btn" style="float:right" href="{{ path('ajout_echange')}}">Ajouter un échange</button>
+  <button type="submit" class="btn" style="float:right">Modifier les informations</button>
+{% endif %}
+</div>
+{#
 
-  <div class="card mb-3" style="width:20%; dislay:inline-block; text-align:center">
-    <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
-    <div class="card-body">
-      <p class="card-text">Classement ATP : {{joueur.classementatp}}</p>
-    </div>
-  </div>
+
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Echanges : </th>
+    </tr>
+  </thead>
+   <tbody>
+   {% for echange in echanges %}
+  <tr>
+      <td><img width="50px" src="{{joueur.image}}" alt="Photo joueur"></td>
+      <td>{{ joueur.nom }}</td>
+      <td>{{ joueur.prenom }}</td>
+      <td>{{ joueur.age }}</td>
+      <td>{{ joueur.nationalite }}</td>
+      <td>{{ joueur.taille }}</td>
+      <td>{{ joueur.poids }}</td>
+      <td><a href="{{ path('details_joueur', {'id': joueur.id}) }}">Consulter la fiche</a>
+      <br><a href="">Modifier les informations</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
   <ul>
     <li>Modifier les informations du joueur</li>
@@ -29,4 +56,5 @@
 
 
 {% endif %}
+#}
 {% endblock %}

@@ -2,11 +2,11 @@
 
 
 {% block body %}
-<h1 style="text-align:center">Liste des Joueurs</h1>
 
   {% if not app.user %}
     {% for joueur in joueurs %}
-      <div style="display:inline-block;width:25%;margin:4%">
+    
+      <div style="display:inline-block;width:25%;margin:4%;text-align:center">
         <h4 class="card-header"><a href="{{ path('details_joueur', {'id': joueur.id}) }}">{{ joueur.nom }} {{ joueur.prenom }}</a></h4>
         <img style="height: 200px; width: 100%; display: block;" src="{{joueur.image}}" alt="Photo joueur">
         <div class="card-body">
@@ -41,7 +41,6 @@
       <td>{{ joueur.taille }}</td>
       <td>{{ joueur.poids }}</td>
       <td><a href="{{ path('details_joueur', {'id': joueur.id}) }}">Consulter la fiche</a>
-      <br><a href="">Modifier les informations</a></td>
     </tr>
     {% endfor %}
   </tbody>
